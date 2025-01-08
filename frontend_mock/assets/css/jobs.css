@@ -1,0 +1,105 @@
+/* jobs.css */
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+}
+
+.nav-links a {
+    margin-left: 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #333;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #2563eb;
+}
+
+/* jobs-section */
+.jobs-section {
+    padding: 4rem 1rem;
+    background: #fff;
+}
+
+.jobs-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+/* Card Style */
+.job-card {
+    display: block;
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    width: 280px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+    color: #333;
+    text-decoration: none;
+}
+
+.job-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.job-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.job-tag {
+    display: inline-block;
+    background: #eef2f7;
+    color: #555;
+    font-size: 0.85rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.job-detail {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #666;
+    margin-bottom: 0.25rem;
+}
+
+.job-income {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-top: 0.5rem;
+    color: #2563eb;
+}
+
+/* footer */
+footer {
+    border-top: 1px solid #eee;
+    padding: 2rem 1rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #888;
+    background: #fff;
+    margin-top: 4rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .jobs-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .job-card {
+        width: 80%;
+        max-width: 400px;
+    }
+}

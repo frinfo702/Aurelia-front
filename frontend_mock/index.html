@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aurelia - Tech Jobs & Internships</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+      color: #333;
+      background: #f4f6f8;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Utility & Base Styles */
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      align-items: center;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .mb-8 {
+      margin-bottom: 2rem;
+    }
+
+    .mb-4 {
+      margin-bottom: 1rem;
+    }
+
+    .mt-8 {
+      margin-top: 2rem;
+    }
+
+    .mt-4 {
+      margin-top: 1rem;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background: #fff;
+      border-bottom: 1px solid #eee;
+      z-index: 50;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 60px;
+    }
+
+    .logo-section {
+      display: flex;
+      align-items: center;
+    }
+
+    .header-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .logo {
+      height: 50px;
+      width: auto;
+    }
+
+    .site-name {
+      font-size: 1.5rem;
+      margin-left: 10px;
+      color: #333;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links a {
+      margin-left: 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #333;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #2563eb;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(to bottom right, #eef2f7, #ffffff);
+      padding: 6rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-content-box {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 10;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    .hero-content-box h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      line-height: 1.25;
+      color: #222;
+      margin-bottom: 1rem;
+    }
+
+    .hero-content-box p {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .search-bar {
+      display: flex;
+      border-radius: 9999px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .search-bar input {
+      flex: 1;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .search-bar button {
+      background: #2563eb;
+      border: none;
+      color: #fff;
+      padding: 0 1.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .search-bar button:hover {
+      background: #1d4ed8;
+    }
+
+    /* Floating Keywords */
+    .floating-keywords {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 5;
+    }
+
+    .keyword {
+      position: absolute;
+      background: rgba(37, 99, 235, 0.1);
+      color: #2563eb;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      opacity: 0.4;
+      mix-blend-mode: multiply;
+    }
+
+    /* Section Titles */
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: #222;
+    }
+
+    /* Featured Jobs Section */
+    .jobs-section {
+      padding: 4rem 1rem;
+      background: #fff;
+    }
+
+    .jobs-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+      min-height: 100px;
+    }
+
+    /* Job Card */
+    .job-card {
+      background: #f9f9f9;
+      border: 1px solid #eee;
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      width: 260px;
+      /* 調整可 */
+      text-align: left;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .job-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .job-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .job-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 0.25rem;
+      margin-right: 0.75rem;
+    }
+
+    .job-company {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #333;
+      margin-bottom: 0.25rem;
+    }
+
+    .job-position {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 0.5rem;
+    }
+
+    .job-meta {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 0.5rem;
+    }
+
+    .job-salary {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #2563eb;
+      margin-bottom: 1rem;
+    }
+
+    .job-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .job-tag {
+      display: inline-block;
+      background: #e0e7ff;
+      color: #1e3a8a;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.75rem;
+      border-radius: 0.25rem;
+    }
+
+    .job-details-btn {
+      align-self: flex-start;
+      background: #2563eb;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.3s ease;
+      cursor: pointer;
+    }
+
+    .job-details-btn:hover {
+      background: #1d4ed8;
+    }
+
+    /* About Section */
+    .about-section {
+      padding: 4rem 1rem;
+      background: #f9f9f9;
+    }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .feature {
+      max-width: 250px;
+      text-align: center;
+    }
+
+    .feature h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #333;
+    }
+
+    .feature p {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #555;
+    }
+
+    /* Testimonials Section */
+    .testimonials-section {
+      padding: 4rem 1rem;
+      background: #fff;
+    }
+
+    .testimonials-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .testimonial {
+      background: #f9f9f9;
+      border: 1px solid #eee;
+      border-radius: 0.75rem;
+      padding: 2rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      transition: box-shadow 0.3s;
+    }
+
+    .testimonial:hover {
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .testimonial p {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #555;
+      margin-bottom: 1rem;
+    }
+
+    .testimonial h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #333;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      padding: 4rem 1rem;
+      text-align: center;
+      background: #eef2f7;
+    }
+
+    .cta-section p {
+      font-size: 1rem;
+      color: #555;
+      max-width: 500px;
+      margin: 1rem auto;
+      line-height: 1.5;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: #2563eb;
+      color: #fff;
+      padding: 0.75rem 2rem;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.3s ease;
+      margin-top: 1rem;
+    }
+
+    .cta-button:hover {
+      background: #1d4ed8;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid #eee;
+      padding: 2rem 1rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #888;
+      background: #fff;
+      margin-top: 4rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-content-box h1 {
+        font-size: 1.75rem;
+      }
+
+      .hero-content-box p {
+        font-size: 0.95rem;
+      }
+
+      .nav-links a {
+        margin-left: 1rem;
+        font-size: 0.9rem;
+      }
+
+      .features {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .search-bar {
+        max-width: 100%;
+      }
+
+      .job-card {
+        width: 100%;
+        max-width: 400px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links a {
+        margin-left: 0.75rem;
+        font-size: 0.85rem;
+      }
+
+      .cta-button {
+        padding: 0.6rem 1.5rem;
+      }
+    }
+  </style>
+  <!-- htmx -->
+  <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+</head>
+
+<body>
+  <header>
+    <div class="header-content container">
+      <div class="logo-section">
+        <a href="/" class="header-link">
+          <img src="/static/horizontal_aurelia_logo.svg" alt="Aurelia" class="logo" />
+        </a>
+      </div>
+      <nav class="nav-links">
+        <!-- 下記 ID は言語切り替えスクリプトでテキスト書き換え対象 -->
+        <a id="nav-jobs" href="/jobs"></a>
+        <a id="nav-about" href="/about"></a>
+        <a id="nav-contact" href="/contact"></a>
+        <a id="nav-signup" href="/signup"></a>
+        <!-- 簡易言語切り替え: JS でURLを書き換え、ページリロード -->
+        <a href="javascript:void(0)" onclick="switchLang('ja')">日本語</a>
+        <a href="javascript:void(0)" onclick="switchLang('en')">English</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="floating-keywords" id="floating-keywords">
+      <!-- キーワードはJSで動的に追加 -->
+    </div>
+    <div class="container">
+      <div class="hero-content-box">
+        <h1 id="hero-title"></h1>
+        <p id="hero-desc"></p>
+        <div class="search-bar">
+          <input id="search-bar-input" type="text" placeholder="" />
+          <button id="search-bar-button"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="jobs-section" id="jobs">
+    <div class="container">
+      <h2 id="jobs-section-title" class="section-title text-center mb-8"></h2>
+      <!-- ここでモックの求人データを読み込む想定 -->
+      <div hx-get="/featured_jobs" hx-trigger="load" hx-target="#jobs-list" hx-swap="innerHTML">
+        <div id="jobs-list" class="jobs-list">
+          <div class="text-sm text-gray-500">Loading jobs...</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-section" id="about">
+    <div class="container text-center">
+      <h2 id="about-section-title" class="section-title"></h2>
+      <div class="features">
+        <div class="feature">
+          <h3 id="feature1-title"></h3>
+          <p id="feature1-desc"></p>
+        </div>
+        <div class="feature">
+          <h3 id="feature2-title"></h3>
+          <p id="feature2-desc"></p>
+        </div>
+        <div class="feature">
+          <h3 id="feature3-title"></h3>
+          <p id="feature3-desc"></p>
+        </div>
+        <div class="feature">
+          <h3 id="feature4-title"></h3>
+          <p id="feature4-desc"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials-section">
+    <div class="container">
+      <h2 id="testimonial-section-title" class="section-title text-center mb-8"></h2>
+      <div hx-get="/testimonials" hx-trigger="load" hx-target="#testimonials-list" hx-swap="innerHTML"
+        class="text-center">
+        <div id="testimonials-list" class="testimonials-list">
+          <div class="text-sm text-gray-500">Loading testimonials...</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section" id="contact">
+    <div class="container">
+      <h2 id="cta-section-title" class="section-title"></h2>
+      <p id="cta-section-desc"></p>
+      <a id="cta-section-button" href="#" class="cta-button"></a>
+    </div>
+  </section>
+
+  <footer>
+    <span id="footer-text"></span>
+  </footer>
+
+  <!-- =========================
+       Mock server responses
+       ========================= -->
+  <div style="display:none;">
+    <!-- Featured Jobs Template (/featured_jobs) -->
+    <template id="featured_jobs_template">
+      <!-- 10個のモック求人カード -->
+      <div class="job-card">
+        <div class="job-header">
+          <img class="job-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg"
+            alt="Go Dev Inc." />
+          <div>
+            <div class="job-company">Go Dev Inc.</div>
+            <div class="job-position">Backend Engineer (intern)</div>
+          </div>
+        </div>
+        <div class="job-meta">東京 / リモート可</div>
+        <div class="job-salary">年収 300〜400万円</div>
+        <div class="job-tags">
+          <span class="job-tag">Golang</span>
+          <span class="job-tag">Docker</span>
+          <span class="job-tag">REST API</span>
+        </div>
+        <a href="#" class="job-details-btn">View Details</a>
+      </div>
+
+      <div class="job-card">
+        <div class="job-header">
+          <img class="job-logo" src="https://www.vectorlogo.zone/logos/javascript/javascript-icon.svg" alt="JS Works" />
+          <div>
+            <div class="job-company">JS Works</div>
+            <div class="job-position">Full Stack Engineer</div>
+          </div>
+        </div>
+        <div class="job-meta">大阪 / ハイブリッド</div>
+        <div class="job-salary">年収 400〜600万円</div>
+        <div class="job-tags">
+          <span class="job-tag">React</span>
+          <span class="job-tag">Node.js</span>
+          <span class="job-tag">AWS</span>
+        </div>
+        <a href="#" class="job-details-btn">View Details</a>
+      </div>
+
+      <div class="job-card">
+        <div class="job-header">
+          <img class="job-logo" src="https://www.vectorlogo.zone/logos/python/python-icon.svg" alt="PyBrains" />
+          <div>
+            <div class="job-company">PyBrains</div>
+            <div class="job-position">Data Scientist (intern)</div>
+          </div>
+        </div>
+        <div class="job-meta">リモートのみ</div>
+        <div class="job-salary">月給 20〜30万円</div>
+        <div class="job-tags">
+          <span class="job-tag">Python</span>
+          <span class="job-tag">Machine Learning</span>
+          <span class="job-tag">SQL</span>
+        </div>
+        <a href="#" class="job-details-btn">View Details</a>
+      </div>
+
+      <div class="job-card">
+        <div class="job-header">
+          <img class="job-logo" src="https://www.vectorlogo.zone/logos/vuejs/vuejs-icon.svg" alt="Vue Frontier" />
+          <div>
+            <div class="job-company">Vue Frontier</div>
+            <div class="job-position">Frontend Developer</div>
+          </div>
+        </div>
+        <div class="job-meta">名古屋 / リモート応相談</div>
+        <div class="job-salary">年収 350〜500万円</div>
+        <div class="job-tags">
+          <span class="job-tag">Vue.js</span>
+          <span class="job-tag">TypeScript</span>
+          <span class="job-tag">UI/UX</span>
+        </div>
+        <a href="#" class="job-details-btn">View Details</a>
+      </div>
+
+      <div class="job-card">
+        <div class="job-header">
+          <img class="job-logo" src="https://www.vectorlogo.zone/logos/kubernetes/kubernetes-icon.svg" alt="CloudOps" />
+          <div>
+            <div class="job-company">CloudOps</div>
+            <div class="job-position">DevOps Engineer</div>
+          </div>
+        </div>
+        <div class="job-meta">福岡 / フルリモート可</div>
+        <div class="job-salary">年収 500〜800万円</div>
+        <div class="job-tags">
+          <span class="job-tag">Kubernetes</span>
+          <span class="job-tag">CI/CD</span>
+          <span class="job-tag">GCP</span>
+        </div>
+        <a href="#" class="job-details-btn">View Details</a>
+      </div>
+
+      <!-- 追加の5つ -->
+      <div class="job-card">
+        <div class="job-header">
+          <img class="job-logo" src="https://www.vectorlogo.zone/logos/apple/apple-icon.svg" alt="Apple Seeds" />
+          <div>
+            <div class="job-company">Apple Seeds</div>
+            <div class="job-position">Mobile App Developer (intern)</div>
+          </div>
+        </div>
+        <div class="job-meta">東京 / ハイブリッド</div>
+        <div class="job-salary">月給 25〜35万円</div>
+        <div class="job-tags">
+          <span class="job-tag">Swift</span>
+          <span class="job-tag">iOS</span>
+          <span class="job-tag">UI/UX</span>
+        </div>
+        <a href="#" class="job-details-btn">View Details</a>
+      </div>
+
+      <div class="job-card">
+        <div class="job-header">
+          <img class="job-logo" src="https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg"
+            alt="LambdaSoft" />
+          <div>
+            <div class="job-company">LambdaSoft</div>
+            <div class="job-position">Serverless Engineer</div>
+          </div>
+        </div>
+        <div class="job-meta">札幌 / リモート応相談</div>
+        <div class="job-salary">年収 400〜700万円</div>
+        <div class="job-tags">
+          <span class="job-tag">AWS Lambda</span>
+          <span class="job-tag">Node.js</span>
+          <span class="job-tag">DynamoDB</span>
+        </div>
+        <a href="#" class="job-details-btn">View Details</a>
+      </div>
+
+      <div class="job-card">
+        <div class="job-header">
+          <img class="job-logo" src="https://www.vectorlogo.zone/logos/mongodb/mongodb-icon.svg" alt="DataNest" />
+          <div>
+            <div class="job-company">DataNest</div>
+            <div class="job-position">Database Administrator (intern)</div>
+          </div>
+        </div>
+        <div class="job-meta">リモートのみ</div>
+        <div class="job-salary">月給 18〜28万円</div>
+        <div class="job-tags">
+          <span class="job-tag">MongoDB</span>
+          <span class="job-tag">Database</span>
+          <span class="job-tag">Performance Tuning</span>
+        </div>
+        <a href="#" class="job-details-btn">View Details</a>
+      </div>
+
+      <div class="job-card">
+        <div class="job-header">
+          <img class="job-logo" src="https://www.vectorlogo.zone/logos/djangoproject/djangoproject-icon.svg"
+            alt="Django Express" />
+          <div>
+            <div class="job-company">Django Express</div>
+            <div class="job-position">Full Stack Engineer (intern)</div>
+          </div>
+        </div>
+        <div class="job-meta">横浜 / リモート可</div>
+        <div class="job-salary">月給 22〜32万円</div>
+        <div class="job-tags">
+          <span class="job-tag">Django</span>
+          <span class="job-tag">Python</span>
+          <span class="job-tag">SQL</span>
+        </div>
+        <a href="#" class="job-details-btn">View Details</a>
+      </div>
+
+      <div class="job-card">
+        <div class="job-header">
+          <img class="job-logo" src="https://www.vectorlogo.zone/logos/reactjs/reactjs-icon.svg" alt="React Corp" />
+          <div>
+            <div class="job-company">React Corp</div>
+            <div class="job-position">Frontend Engineer</div>
+          </div>
+        </div>
+        <div class="job-meta">神戸 / リモート可</div>
+        <div class="job-salary">年収 450〜650万円</div>
+        <div class="job-tags">
+          <span class="job-tag">React</span>
+          <span class="job-tag">TypeScript</span>
+          <span class="job-tag">UI/UX</span>
+        </div>
+        <a href="#" class="job-details-btn">View Details</a>
+      </div>
+    </template>
+
+    <!-- Testimonials Template (/testimonials) -->
+    <template id="testimonials_template">
+      <div class="testimonial">
+        <p>“Aurelia connected me with a company that truly values engineers. No hidden details, just clarity. I love
+          it.”</p>
+        <h4>— A. Watanabe, intern</h4>
+      </div>
+      <div class="testimonial">
+        <p>“This platform is so refreshing. Salary ranges, skill demands—everything is transparent and concise.”</p>
+        <h4>— M. Hashimoto, Full Stack Dev</h4>
+      </div>
+    </template>
+  </div>
+
+  <!-- =========================
+       Floating Keywords Script
+       ========================= -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const keywords = [
+        "Tokyo", "Osaka", "remote", "React", "Golang",
+        "Python", "Kubernetes", "AI", "cloud", "AWS",
+        "intern", "full-time"
+      ];
+      const floatingKeywordsContainer = document.getElementById('floating-keywords');
+      const numKeywords = 12; // Number of floating keywords
+      const keywordElements = [];
+
+      // Create keyword elements
+      for (let i = 0; i < numKeywords; i++) {
+        const keyword = keywords[Math.floor(Math.random() * keywords.length)];
+        const elem = document.createElement('div');
+        elem.classList.add('keyword');
+        elem.textContent = keyword;
+        floatingKeywordsContainer.appendChild(elem);
+        keywordElements.push(elem);
+      }
+
+      // Initialize positions
+      keywordElements.forEach(elem => {
+        elem.style.top = `${Math.random() * 100}%`;
+        elem.style.left = `${Math.random() * 100}%`;
+        elem.style.opacity = 0.4;
+      });
+
+      let mouseX = window.innerWidth / 2;
+      let mouseY = window.innerHeight / 2;
+
+      document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+
+      function animate() {
+        keywordElements.forEach((elem, index) => {
+          const speed = (index + 1) * 0.7;
+          const targetX = mouseX + (Math.random() - 0.5) * 150;
+          const targetY = mouseY + (Math.random() - 0.5) * 150;
+          const currentX = parseFloat(elem.style.left);
+          const currentY = parseFloat(elem.style.top);
+          const newX = currentX + (targetX / window.innerWidth * 100 - currentX) * 0.05 * speed;
+          const newY = currentY + (targetY / window.innerHeight * 100 - currentY) * 0.05 * speed;
+
+          elem.style.transform = `translate(${newX}%, ${newY}%) scale(1.2)`;
+          elem.style.opacity = 0.3 + Math.random() * 0.4;
+        });
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+    });
+  </script>
+
+  <!-- =========================
+       htmx Mock Response Script
+       ========================= -->
+  <script>
+    document.addEventListener('htmx:afterRequest', (e) => {
+      const url = e.detail.requestConfig.path;
+      if (url === '/featured_jobs') {
+        e.detail.target.innerHTML = document.querySelector('#featured_jobs_template').innerHTML;
+      }
+      if (url === '/testimonials') {
+        e.detail.target.innerHTML = document.querySelector('#testimonials_template').innerHTML;
+      }
+    });
+  </script>
+
+  <!-- =========================
+       Language Toggle Script
+       ========================= -->
+  <script>
+    // 簡易的に日本語と英語の文言を用意
+    const translations = {
+      ja: {
+        nav_jobs: "求人",
+        nav_about: "Aureliaについて",
+        nav_contact: "お問い合わせ",
+        nav_signup: "サインアップ",
+
+        hero_title: "先進のインターン＆求人を、シンプルに見つける",
+        hero_desc: "無駄のない情報設計で、報酬や使用技術、カルチャーを透き通るように提示。あなたの可能性を最大限に引き出す新しいカタチのキャリアプラットフォームです。",
+        search_placeholder: "キーワードで検索（例: intern, React, Go…）",
+        search_button: "検索",
+
+        jobs_section_title: "注目の求人一覧",
+
+        about_section_title: "Aureliaを選ぶ理由",
+        feature1_title: "厳選されたポジション",
+        feature1_desc: "多くの求人をただ並べるのではなく、一つひとつ吟味した高品質な案件だけを掲載しています。",
+        feature2_title: "完全透明の報酬体系",
+        feature2_desc: "Appleのような洗練を目指すAureliaでは、曖昧な給与表記をなくし、明確なレンジを提示します。",
+        feature3_title: "最新テクノロジー",
+        feature3_desc: "クラウドネイティブからAI分野まで、あなたが飛躍できる環境がここにあります。",
+        feature4_title: "柔軟なワークスタイル",
+        feature4_desc: "リモートやハイブリッドなど、多様な働き方に対応。あなたのライフスタイルを崩さずに成長できます。",
+
+        testimonial_section_title: "ユーザーの声",
+
+        cta_section_title: "始める準備はできていますか？",
+        cta_section_desc: "アカウントを作成して、先進的なインターン＆求人情報にアクセスしてみましょう。洗練された情報とともに、あなたの可能性を解き放ちます。",
+        cta_section_button: "サインアップ",
+
+        footer_text: "© 2024 Aurelia. All Rights Reserved."
+      },
+
+      en: {
+        nav_jobs: "Jobs",
+        nav_about: "About Aurelia",
+        nav_contact: "Contact",
+        nav_signup: "Sign Up",
+
+        hero_title: "Discover Premier Internships & Jobs Effortlessly",
+        hero_desc: "Experience a polished platform that showcases compensation, tech stacks, and culture with absolute clarity—unlock your true potential with Aurelia.",
+        search_placeholder: "Search by keyword (e.g. intern, React, Go...)",
+        search_button: "Search",
+
+        jobs_section_title: "Featured Job Postings",
+
+        about_section_title: "Why Choose Aurelia",
+        feature1_title: "Handpicked Positions",
+        feature1_desc: "We don't just pile up listings; we carefully curate high-quality roles that matter for engineers.",
+        feature2_title: "Transparent Pay Ranges",
+        feature2_desc: "We value clarity—no vague numbers, just honest salary info so you can plan your next move confidently.",
+        feature3_title: "Cutting-Edge Tech",
+        feature3_desc: "From cloud-native to AI, explore opportunities where you can truly excel in the latest technologies.",
+        feature4_title: "Flexible Workstyles",
+        feature4_desc: "Remote, hybrid, or on-site—Aurelia supports the lifestyle you choose without compromising growth.",
+
+        testimonial_section_title: "What Our Users Say",
+
+        cta_section_title: "Ready to Begin?",
+        cta_section_desc: "Create an account and tap into pioneering internships & jobs that open new doors. Experience streamlined info that empowers your career leap.",
+        cta_section_button: "Sign Up",
+
+        footer_text: "© 2024 Aurelia. All Rights Reserved."
+      }
+    };
+
+    // 言語切り替え処理
+    function applyTranslations(lang) {
+      const t = translations[lang] || translations.ja;
+
+      // Header Nav
+      document.getElementById('nav-jobs').textContent = t.nav_jobs;
+      document.getElementById('nav-about').textContent = t.nav_about;
+      document.getElementById('nav-contact').textContent = t.nav_contact;
+      document.getElementById('nav-signup').textContent = t.nav_signup;
+
+      // Hero
+      document.getElementById('hero-title').textContent = t.hero_title;
+      document.getElementById('hero-desc').textContent = t.hero_desc;
+      document.getElementById('search-bar-input').placeholder = t.search_placeholder;
+      document.getElementById('search-bar-button').textContent = t.search_button;
+
+      // Jobs
+      document.getElementById('jobs-section-title').textContent = t.jobs_section_title;
+
+      // About
+      document.getElementById('about-section-title').textContent = t.about_section_title;
+      document.getElementById('feature1-title').textContent = t.feature1_title;
+      document.getElementById('feature1-desc').textContent = t.feature1_desc;
+      document.getElementById('feature2-title').textContent = t.feature2_title;
+      document.getElementById('feature2-desc').textContent = t.feature2_desc;
+      document.getElementById('feature3-title').textContent = t.feature3_title;
+      document.getElementById('feature3-desc').textContent = t.feature3_desc;
+      document.getElementById('feature4-title').textContent = t.feature4_title;
+      document.getElementById('feature4-desc').textContent = t.feature4_desc;
+
+      // Testimonials
+      document.getElementById('testimonial-section-title').textContent = t.testimonial_section_title;
+
+      // CTA
+      document.getElementById('cta-section-title').textContent = t.cta_section_title;
+      document.getElementById('cta-section-desc').textContent = t.cta_section_desc;
+      document.getElementById('cta-section-button').textContent = t.cta_section_button;
+
+      // Footer
+      document.getElementById('footer-text').textContent = t.footer_text;
+    }
+
+    // URLパラメータから lang を取得し、未指定なら ja
+    function getLangFromQuery() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('lang') || 'ja';
+    }
+
+    // 言語スイッチャ
+    function switchLang(lang) {
+      const url = new URL(window.location);
+      url.searchParams.set('lang', lang);
+      window.location = url.toString(); // 再読み込み
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const currentLang = getLangFromQuery();
+      applyTranslations(currentLang);
+    });
+  </script>
+</body>
+
+</html>
