@@ -4,107 +4,63 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aurelia - Tech Jobs & Internships</title>
-    <link rel="stylesheet" href="/css/styles.css" />
-    <link rel="stylesheet" href="/css/animations.css" />
-    <link rel="stylesheet" href="/css/responsive.css" />
-    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
-    <script src="/js/main.js" defer></script>
-    <script src="/js/animations.js" defer></script>
-    <script src="/js/api.js" defer></script>
+    <title>Aurelia - Home</title>
+    <!-- 必要ならCSS -->
+    <link rel="stylesheet" href="./assets/css/global.css">
+    <!-- 必要なら共通のJS (言語切り替え等) -->
+    <script src="./js/common.js" defer></script>
 </head>
 
 <body>
     <header>
-        <div class="header-content container">
-            <div class="logo-section">
-                <a href="/" class="header-link">
-                    <img src="/assets/images/horizontal_aurelia_logo.svg" alt="Aurelia" class="logo" />
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo-link">
+                    <img src="./assets/images/horizontal_aurelia_logo.svg" alt="Aurelia" class="logo" />
                 </a>
+                <nav class="nav-links">
+                    <a href="./jobs.html">Jobs</a>
+                    <a href="./index.html#about">About</a>
+                    <a href="./index.html#contact">Contact</a>
+                    <a href="./index.html#signup">Sign Up</a>
+                    <button onclick="switchLang('ja')">日本語</button>
+                    <button onclick="switchLang('en')">English</button>
+                    <button onclick="toggleDarkMode()">Dark Mode</button>
+                </nav>
             </div>
-            <nav class="nav-links">
-                <a id="nav-jobs" href="/jobs"></a>
-                <a id="nav-about" href="/about"></a>
-                <a id="nav-contact" href="/contact"></a>
-                <a id="nav-signup" href="/signup"></a>
-                <a href="javascript:void(0)" onclick="switchLang('ja')">日本語</a>
-                <a href="javascript:void(0)" onclick="switchLang('en')">English</a>
-                <button id="dark-mode-toggle">Dark Mode</button>
-            </nav>
         </div>
     </header>
 
     <section class="hero">
-        <div class="floating-keywords" id="floating-keywords"></div>
         <div class="container">
-            <div class="hero-content-box">
-                <h1 id="hero-title"></h1>
-                <p id="hero-desc"></p>
-                <div class="search-bar">
-                    <input id="search-bar-input" type="text" placeholder="" />
-                    <button id="search-bar-button"></button>
-                </div>
+            <h1>Aureliaへようこそ</h1>
+            <p>最新のTechインターンや求人を見つけよう</p>
+            <div class="search-bar">
+                <input type="text" placeholder="Search..." />
+                <button>検索</button>
             </div>
         </div>
     </section>
 
-    <section class="jobs-section" id="jobs">
+    <!-- 例: Aboutセクション等-->
+    <section id="about" class="about-section">
         <div class="container">
-            <h2 id="jobs-section-title" class="section-title text-center mb-8"></h2>
-            <div hx-get="/featured_jobs" hx-trigger="load" hx-target="#jobs-list" hx-swap="innerHTML">
-                <div id="jobs-list" class="jobs-list">
-                    <div class="text-sm text-gray-500">Loading jobs...</div>
-                </div>
-            </div>
+            <h2>About Aurelia</h2>
+            <p>ここにAureliaの特徴を。</p>
+            <!-- ... -->
         </div>
     </section>
 
-    <section class="about-section" id="about">
-        <div class="container text-center">
-            <h2 id="about-section-title" class="section-title"></h2>
-            <div class="features">
-                <div class="feature">
-                    <h3 id="feature1-title"></h3>
-                    <p id="feature1-desc"></p>
-                </div>
-                <div class="feature">
-                    <h3 id="feature2-title"></h3>
-                    <p id="feature2-desc"></p>
-                </div>
-                <div class="feature">
-                    <h3 id="feature3-title"></h3>
-                    <p id="feature3-desc"></p>
-                </div>
-                <div class="feature">
-                    <h3 id="feature4-title"></h3>
-                    <p id="feature4-desc"></p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="testimonials-section">
+    <section id="contact" class="cta-section">
         <div class="container">
-            <h2 id="testimonial-section-title" class="section-title text-center mb-8"></h2>
-            <div hx-get="/testimonials" hx-trigger="load" hx-target="#testimonials-list" hx-swap="innerHTML"
-                class="text-center">
-                <div id="testimonials-list" class="testimonials-list">
-                    <div class="text-sm text-gray-500">Loading testimonials...</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="cta-section" id="contact">
-        <div class="container">
-            <h2 id="cta-section-title" class="section-title"></h2>
-            <p id="cta-section-desc"></p>
-            <a id="cta-section-button" href="#" class="cta-button"></a>
+            <h2>お問い合わせ</h2>
+            <p>興味があればご連絡ください。</p>
+            <a href="#" class="cta-button">Contact</a>
         </div>
     </section>
 
     <footer>
-        <span id="footer-text"></span>
+        <span>© 2025 Aurelia. All Rights Reserved.</span>
     </footer>
 </body>
 

@@ -1,0 +1,63 @@
+/* assets/css/global.css */
+
+/* リセット & ベーススタイル */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    background: #f4f6f8;
+    color: #333;
+    line-height: 1.5;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+header,
+footer {
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 1rem 0;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    height: 40px;
+}
+
+.nav-links a,
+.nav-links button {
+    margin-left: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font: inherit;
+    color: #333;
+}
+
+/* ダークモード例 */
+body.dark-mode {
+    background: #1a1a1a;
+    color: #fff;
+}
+
+body.dark-mode header,
+body.dark-mode footer {
+    background: #2d2d2d;
+    color: #fff;
+}
+
+/* などなど... */

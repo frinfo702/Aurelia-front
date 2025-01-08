@@ -1,265 +1,35 @@
+<!-- ファイル例: frontend_mock/jobs.html -->
 <!DOCTYPE html>
 <html lang="ja">
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aurelia - Jobs Page</title>
-    <style>
-        /* 全体のリセットと基本設定 */
-        body {
-            margin: 0;
-            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-            color: #333;
-            background: #f4f6f8;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        h1,
-        h2,
-        h3 {
-            margin: 0;
-        }
-
-        p {
-            margin: 0;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        .mb-8 {
-            margin-bottom: 2rem;
-        }
-
-        .mb-4 {
-            margin-bottom: 1rem;
-        }
-
-        .mt-8 {
-            margin-top: 2rem;
-        }
-
-        .mt-4 {
-            margin-top: 1rem;
-        }
-
-        /* ヘッダー */
-        header {
-            position: sticky;
-            top: 0;
-            background: #fff;
-            border-bottom: 1px solid #eee;
-            z-index: 50;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 60px;
-        }
-
-        .nav-links a {
-            margin-left: 1.5rem;
-            font-size: 0.95rem;
-            font-weight: 500;
-            color: #333;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #2563eb;
-        }
-
-        /* セクションタイトル */
-        .section-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: #222;
-        }
-
-        /* jobsセクション */
-        .jobs-section {
-            padding: 4rem 1rem;
-            background: #fff;
-        }
-
-        .jobs-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            justify-content: center;
-        }
-
-        .job-card {
-            background: #f9f9f9;
-            border: 1px solid #eee;
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            width: 280px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-            text-decoration: none; /* <a>にも下線が出ないように */
-            color: #333; /* リンク色を普通の文字色に */
-        }
-
-        .job-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .job-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .job-tag {
-            display: inline-block;
-            background: #eef2f7;
-            color: #555;
-            font-size: 0.85rem;
-            padding: 0.2rem 0.5rem;
-            border-radius: 0.25rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .job-detail {
-            font-size: 0.9rem;
-            line-height: 1.4;
-            color: #666;
-            margin-bottom: 0.25rem;
-        }
-
-        .job-income {
-            font-size: 0.9rem;
-            font-weight: 500;
-            margin-top: 0.5rem;
-            color: #2563eb;
-        }
-
-        /* footer */
-        footer {
-            border-top: 1px solid #eee;
-            padding: 2rem 1rem;
-            text-align: center;
-            font-size: 0.85rem;
-            color: #888;
-            background: #fff;
-            margin-top: 4rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .jobs-list {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .job-card {
-                width: 80%;
-                max-width: 400px;
-            }
-        }
-    </style>
-    <!-- htmx -->
-    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+    <title>Jobs Listing</title>
+    <!-- 静的ファイルは /static/... で配信される想定 -->
+    <link rel="stylesheet" href="/static/assets/css/global.css" />
+    <script src="/static/assets/js/jobs.js" defer></script>
 </head>
 
 <body>
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <a href="/" class="text-xl font-bold">Aurelia</a>
-                <nav class="nav-links">
-                    <a href="/">Home</a>
-                    <a href="/jobs" class="font-semibold">Jobs</a>
-                    <a href="about">About</a>
-                    <a href="contact">Contact</a>
-                </nav>
-            </div>
-        </div>
-    </header>
 
-    <!-- Jobs Section -->
-    <section class="jobs-section">
-        <div class="container">
-            <h2 class="section-title text-center mb-8">Current Job Openings</h2>
-
-            <!-- HTMXで /api/jobs を読み込み -->
-            <div hx-get="/api/jobs" hx-trigger="load" hx-target="#jobs-list" hx-swap="innerHTML">
-                <div id="jobs-list" class="jobs-list">
-                    <div class="text-sm text-gray-500">Loading jobs...</div>
-                </div>
-            </div>
-
+    <!-- Heroっぽいイメージセクション -->
+    <section class="hero-section">
+        <img src="/static/assets/images/夜に路地を歩いている人.jpg" alt="Hero Image"
+            style="width:100%;max-height:400px;object-fit:cover;" />
+        <div style="position:absolute; top:50px; left:50px; color:#fff;">
+            <h1>Find Your Next Challenge</h1>
+            <p>Explore various roles and opportunities in our company</p>
         </div>
     </section>
 
-    <footer>
-        © 2024 Aurelia. All Rights Reserved.
-    </footer>
+    <section class="jobs-container" style="padding:1rem;">
+        <h2>Current Job Openings</h2>
+        <div id="jobs-list">
+            <!-- JSで /api/jobs のレスポンスを表示 -->
+            <p>Loading Jobs...</p>
+        </div>
+    </section>
 
-    <!-- ここから下は、ロード後の変換ロジック (htmxのイベントフックを用いてJS変換) -->
-    <script>
-        /*
-          htmx:afterRequest イベントで、
-          /api/jobs の応答(JSON配列)を受け取ったら
-          JS でHTMLに変換し #jobs-list に上書きする。
-          ここでカードを <a href="/jobs/detail?id=xx">～</a> にしてクリック移動させる。
-        */
-        document.addEventListener('htmx:afterRequest', (e) => {
-            const url = e.detail.requestConfig.path;
-            if (url === '/api/jobs') {
-                // APIからのレスポンス(JSON)を受け取る
-                const jobs = e.detail.xhr.response ? JSON.parse(e.detail.xhr.response) : [];
-                const jobsListEl = document.getElementById('jobs-list');
-
-                // jobs が空の場合
-                if (!jobs || jobs.length === 0) {
-                    jobsListEl.innerHTML = '<div class="text-sm text-gray-500">No jobs found.</div>';
-                    return;
-                }
-
-                // 取得した job 一覧をカードにして aタグで囲む
-                let htmlStr = '';
-                jobs.forEach((job) => {
-                    htmlStr += `
-                        <a href="/jobs/detail?id=${job.job_id}" class="job-card">
-                            <div class="job-title">${job.hiring_type || 'Untitled Job'}</div>
-                            <div class="job-tag">${job.job_tag || 'No Tag'}</div>
-                            <div class="job-detail">Tech: ${job.technology_type || '-'}</div>
-                            <div class="job-detail">Requirements: ${job.requirements || '-'}</div>
-                            <div class="job-detail">Used Technology: ${job.used_technology || '-'}</div>
-                            <div class="job-income">Income Range: ${job.income_range || '-'}</div>
-                        </a>
-                    `;
-                });
-                jobsListEl.innerHTML = htmlStr;
-            }
-        });
-    </script>
 </body>
 
 </html>
